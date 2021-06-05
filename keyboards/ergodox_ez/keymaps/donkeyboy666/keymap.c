@@ -4,172 +4,140 @@
 #include "version.h"
 
 #define LAYER_ON_CHECK(layer) (state & (1 << (layer)))
+#define ____ KC_NO
 
-enum custom_keycodes
-{ /*»*/
+enum custom_keycodes /*»*/
+{
   KEY_LOCK = EZ_SAFE_RANGE,
-  KEY_MHR,
+  KEY_NAV,
   KEY_WMN,
   KEY_SYM,
   KEY_NUM,
   KEY_000,
-  KEY_MWTF,
+  KEY_VFTG,
   KEY_CAPS,
   KEY_SHIFTR,
   KEY_SHIFTL,
-  KEY_DOTA,
 }; /*«*/
 
-enum layers
-{ /*»*/
+enum layers /*»*/
+{
   BASE,
   NUM,
   SYM,
-  MHR,
+  NAV,
   WMN,
-  DOTA,
+  UTI,
 }; /*«*/
 
-/* action shortcuts */
-#define KEY_QUIT LALT(KC_Q) /*»*/
-#define KEY_PASTE LCTL(KC_V)
-#define KEY_PASTE_L LCTL(LSFT(KC_V))
-#define KEY_COPY LCTL(KC_C)
-#define KEY_COPY_L LCTL(LSFT(KC_C))
-#define KEY_CUT LCTL(KC_X)
-#define KEY_UNDO LCTL(KC_Z)
-#define KEY_REDO_V LCTL(KC_R)
-#define KEY_REDO LCTL(KC_R)
-#define KEY_CTRLZ LCTL(KC_Z)
-#define KEY_CTRLD LCTL(KC_D)
-#define KEY_CTRLN LCTL(KC_N)
-#define KEY_CTRLC LCTL(KC_C)
-#define KEY_CTRLW LCTL(KC_W)
-#define KEY_EDIT LCTL(KC_T)
-#define KEY_RENAME LCTL(KC_T) /*«*/
-
-/* window manager shortcuts */
-#define KEY_GA0 LGUI(LALT(KC_0)) /*»*/
-#define KEY_GA1 LGUI(LALT(KC_1))
-#define KEY_GA2 LGUI(LALT(KC_2))
-#define KEY_GA3 LGUI(LALT(KC_3))
-#define KEY_GA4 LGUI(LALT(KC_4))
-#define KEY_GA5 LGUI(LALT(KC_5))
-#define KEY_GA6 LGUI(LALT(KC_6))
-#define KEY_GA7 LGUI(LALT(KC_7))
-#define KEY_GA8 LGUI(LALT(KC_8))
-#define KEY_GA9 LGUI(LALT(KC_9))
-#define KEY_WNEW LALT(LCTL(KC_N))       /* go to first empty desktop current monitor */
-#define KEY_WNSS LALT(LCTL(LSFT(KC_N))) /* cycle between nodes current desktop */
-#define KEY_WSDL LALT(LCTL(KC_LEFT))
-#define KEY_WSDV LALT(LCTL(KC_UP)) /* swtich to next monitor desktop */
-#define KEY_WSDR LALT(LCTL(KC_RIGHT))
-#define KEY_WMWL LALT(LCTL(LSFT(KC_LEFT)))
-#define KEY_WMWV LALT(LCTL(LSFT(KC_DOWN))) /* move node to next monitor */
-#define KEY_WMWR LALT(LCTL(LSFT(KC_RIGHT)))
-#define KEY_WFUL LALT(RGUI(KC_ENT))
-#define KEY_WFLT LALT(RGUI(KC_SPC))
-#define KEY_WHLF LALT(RGUI(KC_H))
-#define KEY_WTLD LALT(RGUI(KC_T))
-#define KEY_WSNL LALT(LCTL(LGUI(KC_LEFT)))
-#define KEY_WSNU LALT(LCTL(LGUI(KC_UP)))
-#define KEY_WSND LALT(LCTL(LGUI(KC_DOWN)))
-#define KEY_WSNR LALT(LCTL(LGUI(KC_RIGHT)))
-#define KEY_WMNL LALT(LCTL(LGUI(LSFT(KC_LEFT))))
-#define KEY_WMNU LALT(LCTL(LGUI(LSFT(KC_UP))))
-#define KEY_WMND LALT(LCTL(LGUI(LSFT(KC_DOWN))))
-#define KEY_WMNR LALT(LCTL(LGUI(LSFT(KC_RIGHT))))
-#define KEY_WNSW LALT(LCTL(LSFT(KC_T))) /* swap nodes */
-#define KEY_WNRT LALT(LCTL(LSFT(KC_R))) /* rotate nodes */
-#define KEY_WMM1 LALT(LGUI(KC_F1))
-#define KEY_WMM2 LALT(LGUI(KC_F2))
-#define KEY_WMM3 LALT(LGUI(KC_F3))
-#define KEY_WMLB LALT(LGUI(KC_S))       /* browser */
-#define KEY_WMLT LALT(LGUI(KC_A))       /* terminal */
-#define KEY_WMLC LALT(LGUI(KC_E))       /* cctv */
-#define KEY_WMSG LALT(LGUI(KC_G))       /* serach with google */
-#define KEY_WMLR LALT(LGUI(KC_Z))       /* rofi run */
-#define KEY_WMLW LALT(LGUI(KC_W))       /* rofi windows */
-#define KEY_WMLX LALT(LGUI(KC_X))       /* clip menu */
-#define KEY_WMLD LALT(LGUI(KC_D))       /* nemo */
-#define KEY_WMSC LCTL(LALT(LGUI(KC_K))) /* screenshot */
-#define KEY_WWHD LCTL(LGUI(KC_H))       /* hide window */
-#define KEY_WHWN LALT(LGUI(LCTL(KC_H))) /* show hidden windows */
-#define KEY_FOCM LALT(LCTL(LSFT(KC_M))) /* focus mouse to current node */
+/*  shortcuts »*/
+#define KEY_COPY_L LCTL(LSFT(KC_C))         /* copy for terminal */
+#define KEY_FOCM LALT(LCTL(LSFT(KC_M)))     /* focus mouse to current node */
+#define KEY_PASTE_L LCTL(LSFT(KC_V))        /* paste for terminal */
+#define KEY_QUIT LALT(KC_Q)                 /* quit window */
+#define KEY_WEBB LSFT(LCTL(KC_TAB))         /* browser previous tab */
+#define KEY_WEBF LCTL(KC_TAB)               /* browser next tab */
+#define KEY_WFLT LALT(RGUI(KC_SPC))         /* float */
+#define KEY_WFUL LALT(RGUI(KC_ENT))         /* fullscreen */
+#define KEY_WHLF LALT(RGUI(KC_H))           /* hide window */
+#define KEY_WHWN LALT(LGUI(LCTL(KC_H)))     /* show hidden windows */
+#define KEY_WMLB LALT(LGUI(KC_S))           /* browser */
+#define KEY_WMLC LALT(LGUI(KC_E))           /* cctv */
+#define KEY_WMLD LALT(LGUI(KC_D))           /* nemo */
+#define KEY_WMLR LALT(LGUI(KC_Z))           /* rofi run */
+#define KEY_WMLT LALT(LGUI(KC_A))           /* terminal */
+#define KEY_WMLW LALT(LGUI(KC_W))           /* rofi windows */
+#define KEY_WMLX LALT(LGUI(KC_X))           /* clip menu */
+#define KEY_WMM1 LALT(LGUI(KC_F1))          /* monitor only */
+#define KEY_WMM2 LALT(LGUI(KC_F2))          /* monitor and tv */
+#define KEY_WMM3 LALT(LGUI(KC_F3))          /* tv only */
+#define KEY_WMSC LCTL(LALT(LGUI(KC_K)))     /* screenshot */
+#define KEY_WMSG LALT(LGUI(KC_G))           /* serach with google */
+#define KEY_WMWL LALT(LCTL(LSFT(KC_LEFT)))  /* move window to previous desktop */
+#define KEY_WMWR LALT(LCTL(LSFT(KC_RIGHT))) /* move window to next desktop */
+#define KEY_WMWV LALT(LCTL(LSFT(KC_DOWN)))  /* move window to next monitor*/
+#define KEY_WNEW LALT(LCTL(KC_N))           /* go to first empty desktop current monitor */
+#define KEY_WNRT LALT(LCTL(LSFT(KC_R)))     /* rotate nodes */
+#define KEY_WNSS LALT(LCTL(LSFT(KC_N)))     /* cycle between nodes current desktop */
+#define KEY_WNSW LALT(LCTL(LSFT(KC_T)))     /* swap nodes */
+#define KEY_WSDL LALT(LCTL(KC_LEFT))        /* previous desktop */
+#define KEY_WSDR LALT(LCTL(KC_RIGHT))       /* next desktop */
+#define KEY_WSDV LALT(LCTL(KC_UP))          /* swtich to next monitor desktop */
+#define KEY_WTLD LALT(RGUI(KC_T))           /* tile window */
+#define KEY_WWHD LCTL(LGUI(KC_H))           /* hide window */
 /*«*/
 
 /* clang-format off */ 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox_pretty(/*»*/
-    KC_ESC,     KEY_WMSC, KEY_WMSG,      KEY_WMLR, KEY_WMLW,       KEY_WMLX, KEY_WMLC,      KEY_WMLD, KC_NO,   KC_NO,          KC_NO,           KC_NO,           KC_MUTE,       KC_VOLU,
-    KC_F8,      KC_F15,   KC_K,          KC_C,     KC_P,           KC_ESC,      KC_NO,      KC_NO,    KC_ENT,  KC_M,           KC_L,            KC_Q,            KC_F19,        KC_VOLD,
-    KC_F14,     KC_Z,     KC_U,          KC_S,     KC_T,           KC_B,                              KC_F,    KC_N,           KC_R,            KC_I,            KC_NO,         KC_ESC,
-    KC_LCTL,    KC_A,     LT(WMN, KC_W), KC_G,     KC_D,           KC_V,     KEY_WMLB,      KEY_WMLT, KC_J,    KC_H,           KC_X,            KC_Y,            KC_O,          KC_LCTL,
-    KC_NO,      KC_LSFT,  KC_NO,         KC_LGUI,  KC_LALT,                                                    KC_LALT,        KC_LGUI,         KC_NO,           KC_RSFT,       KC_NO,
-                                                                       KC_TAB, KC_F16,      KEY_CAPS, KC_ENT,
-                                                                               KC_DEL,      KC_DEL,
-                                                         KEY_SHIFTL, KEY_NUM, KEY_MHR,      KEY_MHR,  KEY_SYM, KEY_SHIFTR
+KC_ESC, ____,         ____,         ____,         ____,          ____,     KEY_WMLC,    ____,  ____,   ____,           ____,          ____,          KC_MUTE,       KC_VOLU,
+____,   ____,         KC_K,         KC_C,         KC_P,          KEY_WMLR, ____,        ____,  KC_ENT, KC_M,           KC_L,          KC_Q,          ____,          KC_VOLD,
+____,   KC_Z,         KC_U,         KC_S,         KC_T,          KC_B,                         KC_F,   KC_N,           KC_R,          KC_I,          KC_ESC,        ____, 
+KC_ESC, LCTL_T(KC_A), LT(WMN,KC_W), LT(UTI,KC_G), LT(NAV,KC_D),  KC_V,     ____,        ____,  KC_J,   LT(NAV, KC_H),  LT(UTI,KC_X),  LT(WMN, KC_Y), RCTL_T(KC_O),  KC_ESC,
+____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),                                      RALT_T(KC_ENT), KC_RGUI, ____, KC_NO,         ____, 
+                                                                        ____,  ____,    ____,  ____, 
+                                                                               ____,    ____, 
+                                                       KEY_SHIFTL, KEY_NUM, KEY_NAV,    KEY_NAV,  KEY_SYM, KEY_SHIFTR
   ),/*«*/ 
- [MHR] = LAYOUT_ergodox_pretty(/*»*/    
-    KEY_MWTF, KC_NO,     KC_NO,      KC_NO,      KC_NO,      KC_NO,       KC_NO,        KC_NO,       KC_NO,      KC_NO,     KC_NO,      KC_NO,       KC_NO,    KC_NO,    
-    KC_NO,    KC_NO,     KC_NO,      KC_UP,      KC_NO,      KC_NO,       KC_NO,        KC_NO,       KC_TRNS,    KC_NO,     KC_UP,      KC_NO,       KC_NO,    KC_NO,   
-    KC_NO,    KC_NO,     KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_BTN3,                                KC_NO,      KC_LEFT,   KC_DOWN,    KC_RIGHT,    KC_NO,    KC_NO,   
-    KC_TRNS,  KC_NO,     KC_HOME,    KC_NO,      KC_END,     KEY_PASTE_L, KEY_QUIT,     KC_NO,       KEY_COPY_L, KC_HOME,   KC_NO,      KC_END,      KC_NO,    KC_TRNS,
-    KC_NO,    KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                                                        KC_TRNS,   KC_TRNS,    KC_TRNS,     KC_TRNS,  KC_TRNS,
-                                                            KC_TRNS,    KC_TRNS,        KEY_DOTA, KC_TRNS,
-                                                                        KC_TRNS,        KC_TRNS,
-                                                      KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS 
+ [NAV] = LAYOUT_ergodox_pretty(/*»*/    
+    ____,     ____,      ____,    ____,     ____,     ____,        ____,     ____,  ____,       ____,      ____,       ____,        ____,     ____,    
+    ____,     ____,      KC_NO,   KC_UP,    KC_NO,    KC_NO,       ____,     ____,  KC_TRNS,    KC_NO,     KC_UP,      KC_NO,       KC_NO,    KC_TRNS,   
+    ____,     KC_NO,     KC_LEFT, KC_DOWN,  KC_RIGHT, KC_BTN3,                      KC_NO,      KC_LEFT,   KC_DOWN,    KC_RIGHT,    KC_NO,    KC_NO,  
+    KC_TRNS,  KC_TAB,    KC_HOME, KC_DEL,   KC_END,   KEY_PASTE_L, ____,     ____,  KEY_COPY_L, KC_HOME,   KC_DEL,     KC_END,      KC_TRNS,  KC_TRNS,
+    ____,     KC_TRNS,   ____,    KC_TRNS,  KC_TRNS,                                            KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
+                                                          ____,    ____,     ____, ____,
+                                                                   ____,     ____,
+                                            KEY_WEBB, KEY_WEBF, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS 
   ),/*«*/
   [NUM] = LAYOUT_ergodox_pretty(/*»*/
-    KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KEY_LOCK,
-    KC_TRNS,  KC_TRNS,  KC_HASH, KC_7,     KC_CIRC,  KC_TRNS,  KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_AT,    KC_3,     KC_PERC,  KC_TRNS,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_6,    KC_9,     KC_4,     KC_ASTR,                        KC_PLUS,  KC_1,     KC_5,     KC_2,     KEY_000,  KC_TRNS,
-    KC_TRNS,  KC_8,     KC_LPRN, KC_COMM,  KC_DOT,   KC_TILDE,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_SLSH,  KC_MINUS, KC_RPRN,  KC_0,     KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS,                                            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-                                                     KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS,
-                                                              KC_TRNS,    KC_TRNS,
-                                            KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
+    ____,     ____,     ____,    ____,     ____,     ____,     ____,      ____,     ____,     ____,     ____,     ____,     ____,     KEY_LOCK,
+    ____,     ____,     KC_HASH, KC_7,     KC_CIRC,  ____,     ____,      ____,     ____,     KC_AT,    KC_3,     KC_AMPR,    ____,     ____,   
+    ____,     KC_NO,    KC_6,    KC_9,     KC_4,     KC_TILDE,                      KC_PLUS,  KC_1,     KC_5,     KC_2,     KEY_000,  ____,   
+    KC_TRNS,  KC_8,     KC_LPRN, KC_COMM,  KC_DOT,   KC_BSLS,  ____,       ____,    KC_TRNS,  KC_EQL,   KC_MINUS, KC_RPRN,  KC_0,     KC_TRNS,
+    ____,     KC_TRNS,  ____,    KC_TRNS,  KC_TRNS,                                           KC_TRNS,  KC_TRNS,  ____,     KC_TRNS,  ____,
+                                                      ____,    ____,       ____,    ____,   
+                                                               ____,       ____,   
+                                             KC_TRNS, KC_TRNS, ____,       ____,    KC_TRNS, KC_TRNS
+  ),/*«*/
+ [UTI] = LAYOUT_ergodox_pretty(/*»*/    
+    ____,     ____,      ____,     ____,     ____,     ____,        ____,     ____,   ____,       ____,      ____,       ____,        ____,     ____,    
+    ____,     ____,      KEY_WMSC, KC_NO,    KEY_WMSG, KC_NO,       ____,     ____,   KC_TRNS,    KC_NO,     KC_WH_U,    KC_NO,       KC_NO,    KC_TRNS,   
+    ____,     KC_NO,     KEY_VFTG, KC_NO,    KC_NO,    KC_NO,                         KC_NO,      KC_NO,     KC_WH_D,    KC_NO,       KC_NO,    KC_NO,  
+    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KC_BTN3,     ____,     ____,   KC_NO,      KC_NO,     KC_NO,      KC_NO,       KC_TRNS,  KC_TRNS,
+    ____,     KC_TRNS,   ____,     KC_TRNS,  KC_TRNS,                                             KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
+                                                           ____,    ____,     ____, ____,
+                                                                    ____,     ____,
+                                                   KC_DEL, KC_TRNS, ____,     ____, KC_TRNS, KC_TRNS 
   ),/*«*/
  [SYM] = LAYOUT_ergodox_pretty(/*»*/
-    KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,      KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KEY_WMM1,  
-    KC_TRNS,  KC_TRNS,  KC_DLR,    KC_LBRC,   KC_EXLM,   KC_F1,    KC_TRNS,      KC_TRNS,  KC_F4,     KC_GRV,   KC_RBRC,  KC_AMPR,  KC_TRNS,  KEY_WMM2, 
-    KC_TRNS,  KC_TRNS,  KC_QUES,   KC_DOT,    KC_SCLN,   KC_F2,                            KC_F5,     KC_COLN,  KC_DQUO,  KC_QUOT,  KEY_000,  KEY_WMM3, 
-    KC_TRNS,  KC_LCBR,  KC_LT,     KC_PIPE,   KC_BSLS,   KC_F3,    KC_TRNS,      KC_TRNS,  KC_F6,     KC_EQL,   KC_UNDS,  KC_GT,    KC_RCBR,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS,                                                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  RESET,
-                                                          KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS,
-                                                                   KC_TRNS,      KC_TRNS,
+    ____,     ____,     ____,      ____,      ____,      ____,     ____,         ____,     ____,      ____,     ____,     ____,     ____,     KEY_WMM1,  
+    ____,     ____,     KC_DLR,    KC_LBRC,   KC_PERC,   KC_NO,    ____,         ____,     KC_NO,     KC_GRV,   KC_RBRC,  KC_EXLM,  ____,     KEY_WMM2, 
+    ____,     KC_TRNS,  KC_QUES,   KC_ASTR,   KC_SCLN,   KC_TILDE,                         KC_NO,     KC_COLN,  KC_DQUO,  KC_QUOT,  KEY_000,  KEY_WMM3, 
+    KC_TRNS,  KC_LCBR,  KC_LT,     KC_PIPE,   KC_DOT,    KC_BSLS,  ____,         ____,     KC_NO,     KC_SLSH,  KC_UNDS,  KC_GT,    KC_RCBR,  KC_TRNS,
+    ____,     KC_TRNS,   ____,     KC_TRNS,   KC_TRNS,                                                KC_TRNS,  KC_TRNS,  ____,     KC_TRNS,  RESET,
+                                                          ____,    ____,         ____,    ____,   
+                                                                   ____,         ____,   
                                                  KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS
   ),/*«*/
  [WMN] = LAYOUT_ergodox_pretty(/*»*/    
-    KC_NO,    KC_NO,     KC_NO,      KC_NO,      KC_NO,      KC_NO,       KC_NO,      KC_NO,    KC_NO,      KC_NO,     KC_NO,     KC_NO,       KC_NO,    KEY_WMM1,   
-    KC_NO,    KC_NO,     KC_NO,      KEY_WMWL,   KEY_WMWR,   KEY_WMWV,    KC_NO,      KC_NO,    KC_NO,      KC_NO,     KC_NO,     KC_NO,       KC_NO,    KEY_WMM2, 
-    KC_NO,    KC_NO,     KC_NO,      KEY_WSDL,   KEY_WSDR,   KEY_WSDV,                          KC_NO,      KC_NO,     KC_NO,     KC_NO,       KC_NO,    KEY_WMM3,  
-    KC_NO,    KEY_WHLF,  KC_TRNS,    KEY_WFUL,   KEY_WNSS,   KEY_WNSW,    KC_NO,      KC_NO,    KC_NO,      KC_NO,     KC_NO,     KC_NO,       KC_NO,    KC_NO,
-    KC_NO,    KEY_WNRT,  KC_NO,      KEY_WFLT,   KEY_WTLD,                                                  KC_NO,     KC_NO,     KC_NO,       KC_NO,    KC_NO,
-                                                                KC_NO,    KC_NO,      KC_NO, KC_NO,
-                                                                          KEY_WHWN,   KC_NO,
-                                                      KEY_WMLW, KEY_WNEW, KEY_WWHD,   KC_NO, KC_NO, KC_NO
-  ),/*«*/
- [DOTA] = LAYOUT_ergodox_pretty(/*»*/
-    KC_PAUSE,   KC_Y,     KC_Q,     KC_L,     KC_O,     KC_Z,     KC_3,       KC_NO,  KC_NO,    KC_NO,  KC_NO,   KC_NO,    KC_NO,  KC_NO,  
-    KC_4,       KC_F13,   KC_W,     KC_M,     KC_P,     KC_TAB,   KC_2,       KC_NO,  KC_NO,    KC_NO,  KC_NO,   KC_NO,    KC_NO,  KC_NO,
-    KC_H,       KC_J,     KC_S,     KC_R,     KC_T,     KC_G,                         KC_NO,    KC_NO,  KC_NO,   KC_NO,    KC_NO,  KC_NO, 
-    KC_ESC,     KC_A,     KC_LALT,  KC_C,     KC_D,     KC_F,     KC_N,       KC_NO,  KC_NO,    KC_NO,  KC_NO,   KC_NO,    KC_NO,  KC_NO,
-    KC_1,       KC_LSFT,  KC_LCTL,  KC_5,     KC_B,                                          KC_NO,  KC_NO,   KC_NO,    KC_NO,  KC_NO,
-                                                             KC_K, KC_X,      KEY_DOTA, KC_NO,
-                                                                   KC_V,      KC_NO,
-                                                   KC_SPC, KC_ENT, KC_E,      KC_NO, KC_NO, KC_NO
+    ____,     ____,     ____,    ____,     ____,      ____,     ____,      ____, ____,     ____,     ____,     ____,      ____,   KEY_WMM1,   
+    ____,     ____,     KC_NO,   KEY_WMWL, KEY_WMWR,  KEY_WHWN, ____,      ____, KEY_WHLF, KEY_QUIT, KC_WH_U,  KC_NO,     ____,   KEY_WMM2, 
+    ____,     KEY_WFLT, KC_NO,   KEY_WSDL, KEY_WSDR,  KEY_WWHD,                  KC_NO,    KEY_WSDL, KC_WH_D,  KEY_WSDR,  KC_NO,  KEY_WMM3,  
+    KEY_WTLD, KEY_WMWV, KC_TRNS, KEY_WFUL, KEY_WNSS,  KEY_WNSW, ____,      ____, KC_NO,    KC_TAB,   KC_NO,    KC_TRNS,   KC_NO,  KC_NO,
+    ____,     KEY_WNRT, ____,    ____,     KEY_WSDV,                             ____,     ____,     ____,     KC_NO,     ____, 
+                                                      ____,     ____,      ____, ____, 
+                                                                ____,      ____, 
+                                            KEY_WNEW, KEY_WMLW, ____,      ____,  KEY_WMLB, KEY_WMLT
   )/*«*/
 };
 /* clang-format on */
 
 static bool keyboard_locked = false;
 static bool caps_enabled = false;
-static bool dota_layer_on = false;
-static bool mhr_layer_on = false;
-static uint16_t mhr_pressed_timer = 0;
-static bool mhr_do_1st_tap = true;
-static bool mhr_layer_hold = false;
+static bool NAV_layer_on = false;
+static uint16_t NAV_pressed_timer = 0;
+static bool NAV_do_1st_tap = true;
+static bool NAV_layer_hold = false;
 static bool inbetween_key = false;
 
 #define REPEAT_TIMEOUT 400
@@ -188,27 +156,30 @@ static bool inbetween_key = false;
   /*«*/
 
 #define SYM_REPEAT_KEY X_SPC
-KEY_REPEAT_DEFINES(sym)
+#define SYM_HOLD_KEY X_RSFT
+KEY_REPEAT_DEFINES(SYM)
 
 #define NUM_REPEAT_KEY X_E
-KEY_REPEAT_DEFINES(num)
+#define NUM_HOLD_KEY X_RSFT
+KEY_REPEAT_DEFINES(NUM)
 
 #define SHIFTL_REPEAT_KEY X_ENT
 #define SHIFTL_HOLD_KEY X_LSFT
-KEY_REPEAT_DEFINES(shiftl)
+KEY_REPEAT_DEFINES(SHIFTL)
 
 #define SHIFTR_REPEAT_KEY X_BSPC
 #define SHIFTR_HOLD_KEY X_RSFT
-KEY_REPEAT_DEFINES(shiftr)
+KEY_REPEAT_DEFINES(SHIFTR)
+static bool shift_is_on = false;
 
-#define KEY_MOD_REPEAT(prefix, key) /*»*/                                                        \
-  case KEY_##key:                                                                                 \
+#define KEY_MOD_REPEAT(prefix) /*»*/                                                             \
+  case KEY_##prefix:                                                                              \
   {                                                                                               \
     if (record->event.pressed)                                                                    \
     {                                                                                             \
       inbetween_key = false;                                                                      \
       prefix##_layer_on = true;                                                                   \
-      SEND_STRING(SS_DOWN(key##_HOLD_KEY));                                                       \
+      SEND_STRING(SS_DOWN(prefix##_HOLD_KEY));                                                    \
       if (prefix##_do_2nd_tap)                                                                    \
       {                                                                                           \
         prefix##_second_press_timer = timer_read();                                               \
@@ -230,12 +201,12 @@ KEY_REPEAT_DEFINES(shiftr)
     {                                                                                             \
       if (!prefix##_repeated)                                                                     \
       {                                                                                           \
-        SEND_STRING(SS_UP(key##_HOLD_KEY));                                                       \
+        SEND_STRING(SS_UP(prefix##_HOLD_KEY));                                                    \
         if (!prefix##_interrupted)                                                                \
         {                                                                                         \
           if (!prefix##_second_press && timer_elapsed(prefix##_seq_start_timer) < REPEAT_TIMEOUT) \
           {                                                                                       \
-            SEND_STRING(SS_TAP(key##_REPEAT_KEY));                                                \
+            SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                             \
             inbetween_key = true;                                                                 \
           }                                                                                       \
           else                                                                                    \
@@ -243,7 +214,7 @@ KEY_REPEAT_DEFINES(shiftr)
             if (prefix##_second_press &&                                                          \
                 timer_elapsed(prefix##_second_press_timer) < REPEAT_TIMEOUT && !inbetween_key)    \
             {                                                                                     \
-              SEND_STRING(SS_TAP(key##_REPEAT_KEY));                                              \
+              SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                           \
               inbetween_key = true;                                                               \
             }                                                                                     \
             prefix##_do_2nd_tap = false;                                                          \
@@ -266,14 +237,18 @@ KEY_REPEAT_DEFINES(shiftr)
       }                                                                                           \
     }                                                                                             \
     return false;                                                                                 \
-  }                                   /*«*/
-#define KEY_LAYER_REPEAT(prefix, key) /*»*/                                                      \
-  case KEY_##key:                                                                                 \
+  }                              /*«*/
+#define KEY_LAYER_REPEAT(prefix) /*»*/                                                           \
+  case KEY_##prefix:                                                                              \
   {                                                                                               \
     if (record->event.pressed)                                                                    \
     {                                                                                             \
+      if (SHIFTR_layer_on)                                                                        \
+      {                                                                                           \
+        shift_is_on = true;                                                                       \
+      }                                                                                           \
       prefix##_layer_on = true;                                                                   \
-      layer_on(key);                                                                              \
+      layer_on(prefix);                                                                           \
       inbetween_key = false;                                                                      \
       if (prefix##_do_2nd_tap)                                                                    \
       {                                                                                           \
@@ -297,25 +272,34 @@ KEY_REPEAT_DEFINES(shiftr)
     {                                                                                             \
       if (!prefix##_repeated)                                                                     \
       {                                                                                           \
-        layer_off(key);                                                                           \
+        layer_off(prefix);                                                                        \
         if (!prefix##_interrupted)                                                                \
         {                                                                                         \
           if (!prefix##_second_press && timer_elapsed(prefix##_seq_start_timer) < REPEAT_TIMEOUT) \
           {                                                                                       \
-            SEND_STRING(SS_TAP(key##_REPEAT_KEY));                                                \
+            if (shift_is_on && !SHIFTR_layer_on)                                                  \
+            {                                                                                     \
+              SEND_STRING(SS_DOWN(prefix##_HOLD_KEY));                                            \
+            }                                                                                     \
+            SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                             \
             inbetween_key = true;                                                                 \
-            SET_LAYER_INTERRUPTED(shiftl);                                                        \
-            SET_LAYER_INTERRUPTED(shiftr);                                                        \
+            SET_LAYER_INTERRUPTED(SHIFTL);                                                        \
+            SET_LAYER_INTERRUPTED(SHIFTR);                                                        \
+            if (shift_is_on && !SHIFTR_layer_on)                                                  \
+            {                                                                                     \
+              SEND_STRING(SS_UP(prefix##_HOLD_KEY));                                              \
+              shift_is_on = false;                                                                \
+            }                                                                                     \
           }                                                                                       \
           else                                                                                    \
           {                                                                                       \
             if (prefix##_second_press &&                                                          \
                 timer_elapsed(prefix##_second_press_timer) < REPEAT_TIMEOUT)                      \
             {                                                                                     \
-              SEND_STRING(SS_TAP(key##_REPEAT_KEY));                                              \
+              SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                           \
               inbetween_key = true;                                                               \
-              SET_LAYER_INTERRUPTED(shiftl);                                                      \
-              SET_LAYER_INTERRUPTED(shiftr);                                                      \
+              SET_LAYER_INTERRUPTED(SHIFTL);                                                      \
+              SET_LAYER_INTERRUPTED(SHIFTR);                                                      \
             }                                                                                     \
             prefix##_do_2nd_tap = false;                                                          \
             prefix##_repeat = false;                                                              \
@@ -326,6 +310,7 @@ KEY_REPEAT_DEFINES(shiftr)
         {                                                                                         \
           prefix##_do_2nd_tap = false;                                                            \
           prefix##_repeat = false;                                                                \
+          shift_is_on = false;                                                                    \
         }                                                                                         \
       }                                                                                           \
       else                                                                                        \
@@ -361,65 +346,65 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
           keyboard_locked = false;
 
           // because lock is on num layer
-          num_layer_on = false;
-          num_repeat = false;
-          num_interrupted = false;
+          NUM_layer_on = false;
+          NUM_repeat = false;
+          NUM_interrupted = false;
           layer_off(NUM);
         }
         else
         {
           keyboard_locked = true;
-          num_interrupted = true;
+          NUM_interrupted = true;
         }
       }
       return false;
     } /*«*/
 
-      KEY_LAYER_REPEAT(sym, SYM);
-      KEY_LAYER_REPEAT(num, NUM);
-      KEY_MOD_REPEAT(shiftl, SHIFTL);
-      KEY_MOD_REPEAT(shiftr, SHIFTR);
+      KEY_MOD_REPEAT(SHIFTR);
+      KEY_LAYER_REPEAT(SYM);
+      KEY_LAYER_REPEAT(NUM);
+      KEY_MOD_REPEAT(SHIFTL);
 
-    case KEY_MHR:
+    case KEY_NAV:
     { /*»*/
       if (record->event.pressed)
       {
-        if (timer_elapsed(mhr_pressed_timer) > 400 && !mhr_do_1st_tap)
+        if (timer_elapsed(NAV_pressed_timer) > 400 && !NAV_do_1st_tap)
         {
-          mhr_do_1st_tap = true;
+          NAV_do_1st_tap = true;
         }
-        if (mhr_do_1st_tap)
+        if (NAV_do_1st_tap)
         {
-          mhr_pressed_timer = timer_read();
+          NAV_pressed_timer = timer_read();
         }
-        if (!mhr_layer_on)
+        if (!NAV_layer_on)
         {
-          layer_on(MHR);
-          mhr_layer_on = true;
+          layer_on(NAV);
+          NAV_layer_on = true;
         }
       }
       else
       {
-        if (mhr_do_1st_tap)
+        if (NAV_do_1st_tap)
         {
-          mhr_layer_on = false;
-          layer_off(MHR);
-          mhr_do_1st_tap = false;
-          mhr_layer_hold = false;
+          NAV_layer_on = false;
+          layer_off(NAV);
+          NAV_do_1st_tap = false;
+          NAV_layer_hold = false;
         }
         else
         {
-          if (!mhr_layer_hold)
+          if (!NAV_layer_hold)
           {
-            mhr_layer_hold = true;
-            mhr_do_1st_tap = false;
+            NAV_layer_hold = true;
+            NAV_do_1st_tap = false;
           }
           else
           {
-            mhr_layer_on = false;
-            layer_off(MHR);
-            mhr_do_1st_tap = true;
-            mhr_layer_hold = false;
+            NAV_layer_on = false;
+            layer_off(NAV);
+            NAV_do_1st_tap = true;
+            NAV_layer_hold = false;
           }
         }
       }
@@ -449,20 +434,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
       }
       return false;
     } /*«*/
-    case KEY_DOTA:
+    case KEY_VFTG:
     { /*»*/
       if (record->event.pressed)
       {
-        if (!dota_layer_on)
-        {
-          layer_move(DOTA);
-          dota_layer_on = true;
-        }
-        else
-        {
-          layer_clear();
-          dota_layer_on = false;
-        }
+        SEND_STRING("za");
+        SET_LAYER_INTERRUPTED(NUM);
       }
       return false;
     } /*«*/
@@ -471,7 +448,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
       if (record->event.pressed)
       {
         SEND_STRING("000");
-        SET_LAYER_INTERRUPTED(num);
+        SET_LAYER_INTERRUPTED(NUM);
       }
       return false;
     } /*«*/
@@ -480,17 +457,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
       if (record->event.pressed)
       {
         inbetween_key = true;
-        SET_LAYER_INTERRUPTED(sym);
-        SET_LAYER_INTERRUPTED(num);
-        SET_LAYER_INTERRUPTED(shiftr);
-        SET_LAYER_INTERRUPTED(shiftl);
+        SET_LAYER_INTERRUPTED(SYM);
+        SET_LAYER_INTERRUPTED(NUM);
+        SET_LAYER_INTERRUPTED(SHIFTR);
+        SET_LAYER_INTERRUPTED(SHIFTL);
       }
       return true;
     } /*«*/
   }
 }
 
-#define KEY_SCAN_REPEAT_MOD(prefix, key) /*»*/                                      \
+#define KEY_SCAN_REPEAT_MOD(prefix) /*»*/                                           \
   if (prefix##_repeat && !prefix##_interrupted)                                      \
   {                                                                                  \
     if ((timer_elapsed(prefix##_second_press_timer) > KEY_SECOND_PRESSED_TIMEOUT) && \
@@ -498,15 +475,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
     {                                                                                \
       if (!prefix##_repeated)                                                        \
       {                                                                              \
-        SEND_STRING(SS_UP(key##_HOLD_KEY));                                          \
+        SEND_STRING(SS_UP(prefix##_HOLD_KEY));                                       \
         prefix##_layer_on = false;                                                   \
         prefix##_repeated = true;                                                    \
       }                                                                              \
-      SEND_STRING(SS_TAP(key##_REPEAT_KEY));                                         \
+      SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                      \
       prefix##_repeat_timeout = timer_read();                                        \
     }                                                                                \
-  }                                        /*«*/
-#define KEY_SCAN_REPEAT_LAYER(prefix, key) /*»*/                                    \
+  }                                   /*«*/
+#define KEY_SCAN_REPEAT_LAYER(prefix) /*»*/                                         \
   if (prefix##_repeat && !prefix##_interrupted)                                      \
   {                                                                                  \
     if ((timer_elapsed(prefix##_second_press_timer) > KEY_SECOND_PRESSED_TIMEOUT) && \
@@ -515,20 +492,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
       if (!prefix##_repeated)                                                        \
       {                                                                              \
         prefix##_layer_on = false;                                                   \
-        layer_off(key);                                                              \
+        layer_off(prefix);                                                           \
         prefix##_repeated = true;                                                    \
       }                                                                              \
-      SEND_STRING(SS_TAP(key##_REPEAT_KEY));                                         \
+      SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                      \
       prefix##_repeat_timeout = timer_read();                                        \
     }                                                                                \
   } /*«*/
 
 void matrix_scan_user(void)
 { /*»*/
-  KEY_SCAN_REPEAT_MOD(shiftr, SHIFTR);
-  KEY_SCAN_REPEAT_MOD(shiftl, SHIFTL);
-  KEY_SCAN_REPEAT_LAYER(sym, SYM);
-  KEY_SCAN_REPEAT_LAYER(num, NUM);
+  KEY_SCAN_REPEAT_MOD(SHIFTR);
+  KEY_SCAN_REPEAT_MOD(SHIFTL);
+  KEY_SCAN_REPEAT_LAYER(SYM);
+  KEY_SCAN_REPEAT_LAYER(NUM);
 } /*«*/
 
 layer_state_t layer_state_set_user(layer_state_t state)
@@ -571,22 +548,53 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t* record)
 { /*»*/
   switch (keycode)
   {
+    case RCTL_T(KC_O):
+      return true;
+    case LCTL_T(KC_O):
+      return true;
+    case LCTL_T(KC_A):
+      return true;
+    case LT(UTI, KC_X):
+      return true;
+    case LT(UTI, KC_G):
+      return true;
+    case LT(NAV, KC_H):
+      return true;
+    case LT(NAV, KC_D):
+      return true;
+    case LT(WMN, KC_Y):
+      return true;
     case LT(WMN, KC_W):
       return true;
     default:
-      return false;
+      return true;
   }
-}
-/*«*/
+} /*«*/
 
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t* record)
 { /*»*/
   switch (keycode)
   {
+    case RCTL_T(KC_O):
+      return true;
+    case LCTL_T(KC_O):
+      return true;
+    case LCTL_T(KC_A):
+      return true;
+    case LT(UTI, KC_X):
+      return true;
+    case LT(UTI, KC_G):
+      return true;
+    case LT(NAV, KC_H):
+      return true;
+    case LT(NAV, KC_D):
+      return true;
+    case LT(WMN, KC_Y):
+      return true;
     case LT(WMN, KC_W):
       return true;
     default:
-      return false;
+      return true;
   }
 } /*«*/
 
