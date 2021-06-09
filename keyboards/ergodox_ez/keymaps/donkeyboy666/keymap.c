@@ -9,7 +9,8 @@
 enum custom_keycodes /*»*/
 {
   KEY_LOCK = EZ_SAFE_RANGE,
-  KEY_NAV,
+  KEY_NAVR,
+  KEY_NAVL,
   KEY_WMN,
   KEY_SYM,
   KEY_NUM,
@@ -73,25 +74,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 KC_ESC, ____,         ____,         ____,         ____,          ____,     KEY_WMLC,    ____,  ____,   ____,           ____,          ____,          KC_MUTE,       KC_VOLU,
 ____,   ____,         KC_K,         KC_C,         KC_P,          KEY_WMLR, ____,        ____,  KC_ENT, KC_M,           KC_L,          KC_Q,          ____,          KC_VOLD,
 ____,   KC_Z,         KC_U,         KC_S,         KC_T,          KC_B,                         KC_F,   KC_N,           KC_R,          KC_I,          KC_ESC,        ____, 
-KC_ESC, LCTL_T(KC_A), LT(WMN,KC_W), LT(UTI,KC_G), LT(NAV,KC_D),  KC_V,     ____,        ____,  KC_J,   LT(NAV, KC_H),  LT(UTI,KC_X),  LT(WMN, KC_Y), RCTL_T(KC_O),  KC_ESC,
+KC_ESC, LCTL_T(KC_A), LT(WMN,KC_W), LT(UTI,KC_G), KEY_NAVL,       KC_V,     ____,        ____,  KC_J,  KEY_NAVR,  LT(UTI,KC_X),  LT(WMN, KC_Y), RCTL_T(KC_O),  KC_ESC,
 ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),                                      RALT_T(KC_ENT), KC_RGUI, ____, KC_NO,         ____, 
                                                                         ____,  ____,    ____,  ____, 
                                                                                ____,    ____, 
-                                                       KEY_SHIFTL, KEY_NUM, KEY_NAV,    KEY_NAV,  KEY_SYM, KEY_SHIFTR
+                                                          KEY_SHIFTL, KEY_NUM, ____,    ____,  KEY_SYM, KEY_SHIFTR
   ),/*«*/ 
- [NAV] = LAYOUT_ergodox_pretty(/*»*/    
-    ____,     ____,      ____,    ____,     ____,     ____,        ____,     ____,  ____,       ____,      ____,       ____,        ____,     ____,    
-    ____,     ____,      KC_NO,   KC_UP,    KC_NO,    KC_NO,       ____,     ____,  KC_TRNS,    KC_NO,     KC_UP,      KC_NO,       KC_NO,    KC_TRNS,   
-    ____,     KC_NO,     KC_LEFT, KC_DOWN,  KC_RIGHT, KC_BTN3,                      KC_NO,      KC_LEFT,   KC_DOWN,    KC_RIGHT,    KC_NO,    KC_NO,  
-    KC_TRNS,  KC_TAB,    KC_HOME, KC_DEL,   KC_END,   KEY_PASTE_L, ____,     ____,  KEY_COPY_L, KC_HOME,   KC_DEL,     KC_END,      KC_TRNS,  KC_TRNS,
-    ____,     KC_TRNS,   ____,    KC_TRNS,  KC_TRNS,                                            KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
-                                                          ____,    ____,     ____, ____,
-                                                                   ____,     ____,
-                                            KEY_WEBB, KEY_WEBF, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS 
+
+ [SYM] = LAYOUT_ergodox_pretty(/*»*/
+    ____,     ____,     ____,      ____,      ____,      ____,     ____,         ____,     ____,      ____,     ____,     ____,     ____,     KEY_WMM1,  
+    ____,     ____,     KC_HASH,   KC_LBRC,   KC_PERC,   KC_NO,    ____,         ____,     KC_NO,     KC_GRV,   KC_RBRC,  KC_EXLM,  ____,     KEY_WMM2, 
+    ____,     KC_TRNS,  KC_QUES,   KC_ASTR,   KC_SCLN,   KC_TILDE,                         KC_NO,     KC_COLN,  KC_DQUO,  KC_QUOT,  KEY_000,  KEY_WMM3, 
+    KC_TRNS,  KC_LT,    KC_LCBR,   KC_PIPE,   KC_DOT,    KC_BSLS,  ____,         ____,     KC_NO,     KC_SLSH,  KC_UNDS,  KC_RCBR,  KC_GT,    KC_TRNS,
+    ____,     KC_TRNS,   ____,     KC_TRNS,   KC_TRNS,                                                KC_TRNS,  KC_TRNS,  ____,     KC_TRNS,  RESET,
+                                                          ____,    ____,         ____,    ____,   
+                                                                   ____,         ____,   
+                                                 KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS
   ),/*«*/
+
   [NUM] = LAYOUT_ergodox_pretty(/*»*/
     ____,     ____,     ____,    ____,     ____,     ____,     ____,      ____,     ____,     ____,     ____,     ____,     ____,     KEY_LOCK,
-    ____,     ____,     KC_HASH, KC_7,     KC_CIRC,  ____,     ____,      ____,     ____,     KC_AT,    KC_3,     KC_AMPR,    ____,     ____,   
+    ____,     ____,     KC_DLR,  KC_7,     KC_CIRC,  ____,     ____,      ____,     ____,     KC_AT,    KC_3,     KC_AMPR,    ____,     ____,   
     ____,     KC_NO,    KC_6,    KC_9,     KC_4,     KC_TILDE,                      KC_PLUS,  KC_1,     KC_5,     KC_2,     KEY_000,  ____,   
     KC_TRNS,  KC_8,     KC_LPRN, KC_COMM,  KC_DOT,   KC_BSLS,  ____,       ____,    KC_TRNS,  KC_EQL,   KC_MINUS, KC_RPRN,  KC_0,     KC_TRNS,
     ____,     KC_TRNS,  ____,    KC_TRNS,  KC_TRNS,                                           KC_TRNS,  KC_TRNS,  ____,     KC_TRNS,  ____,
@@ -99,26 +102,29 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
                                                                ____,       ____,   
                                              KC_TRNS, KC_TRNS, ____,       ____,    KC_TRNS, KC_TRNS
   ),/*«*/
+
+ [NAV] = LAYOUT_ergodox_pretty(/*»*/    
+    ____,     ____,      ____,    ____,     ____,        ____,     ____,     ____,  ____,       ____,      ____,       ____,        ____,     ____,    
+    ____,     ____,      KC_NO,   KC_UP,    KC_NO,       KC_NO,    ____,     ____,  KC_TRNS,    KC_NO,     KC_UP,      KC_NO,       KC_NO,    KC_TRNS,   
+    ____,     KC_NO,     KC_LEFT, KC_DOWN,  KC_RIGHT,    KC_NO,                     KC_NO,      KC_LEFT,   KC_DOWN,    KC_RIGHT,    KC_NO,    KC_NO,  
+    KC_TRNS,  KC_TAB,    KC_HOME, KC_DEL,   KC_END,      KC_NO,    ____,     ____,  KC_NO,      KC_HOME,   KC_DEL,     KC_END,      KC_TRNS,  KC_TRNS,
+    ____,     KC_TRNS,   ____,    KC_TRNS,  KC_TRNS,                                            KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
+                                                          ____,    ____,     ____, ____,
+                                                                   ____,     ____,
+                                              KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS 
+  ),/*«*/
+
  [UTI] = LAYOUT_ergodox_pretty(/*»*/    
     ____,     ____,      ____,     ____,     ____,     ____,        ____,     ____,   ____,       ____,      ____,       ____,        ____,     ____,    
     ____,     ____,      KEY_WMSC, KC_NO,    KEY_WMSG, KC_NO,       ____,     ____,   KC_TRNS,    KC_NO,     KC_WH_U,    KC_NO,       KC_NO,    KC_TRNS,   
-    ____,     KC_NO,     KEY_VFTG, KC_NO,    KC_NO,    KC_NO,                         KC_NO,      KC_NO,     KC_WH_D,    KC_NO,       KC_NO,    KC_NO,  
-    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KC_BTN3,     ____,     ____,   KC_NO,      KC_NO,     KC_NO,      KC_NO,       KC_TRNS,  KC_TRNS,
-    ____,     KC_TRNS,   ____,     KC_TRNS,  KC_TRNS,                                             KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
+    ____,     KC_NO,     KEY_VFTG, KC_NO,    KC_NO,    KC_BTN3,                       KC_NO,      KC_NO,     KC_WH_D,    KC_NO,       KC_NO,    KC_NO,  
+    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KEY_PASTE_L, ____,     ____,   KEY_COPY_L, KC_NO,     KC_NO,      KC_NO,       KC_TRNS,  KC_TRNS,
+    ____,     KEY_WMLD,  ____,     KC_TRNS,  KC_TRNS,                                             KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
                                                            ____,    ____,     ____, ____,
                                                                     ____,     ____,
-                                                   KC_DEL, KC_TRNS, ____,     ____, KC_TRNS, KC_TRNS 
+                                                  KC_TRNS, KC_TRNS, ____,     ____, KC_TRNS, KC_TRNS 
   ),/*«*/
- [SYM] = LAYOUT_ergodox_pretty(/*»*/
-    ____,     ____,     ____,      ____,      ____,      ____,     ____,         ____,     ____,      ____,     ____,     ____,     ____,     KEY_WMM1,  
-    ____,     ____,     KC_DLR,    KC_LBRC,   KC_PERC,   KC_NO,    ____,         ____,     KC_NO,     KC_GRV,   KC_RBRC,  KC_EXLM,  ____,     KEY_WMM2, 
-    ____,     KC_TRNS,  KC_QUES,   KC_ASTR,   KC_SCLN,   KC_TILDE,                         KC_NO,     KC_COLN,  KC_DQUO,  KC_QUOT,  KEY_000,  KEY_WMM3, 
-    KC_TRNS,  KC_LCBR,  KC_LT,     KC_PIPE,   KC_DOT,    KC_BSLS,  ____,         ____,     KC_NO,     KC_SLSH,  KC_UNDS,  KC_GT,    KC_RCBR,  KC_TRNS,
-    ____,     KC_TRNS,   ____,     KC_TRNS,   KC_TRNS,                                                KC_TRNS,  KC_TRNS,  ____,     KC_TRNS,  RESET,
-                                                          ____,    ____,         ____,    ____,   
-                                                                   ____,         ____,   
-                                                 KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS
-  ),/*«*/
+
  [WMN] = LAYOUT_ergodox_pretty(/*»*/    
     ____,     ____,     ____,    ____,     ____,      ____,     ____,      ____, ____,     ____,     ____,     ____,      ____,   KEY_WMM1,   
     ____,     ____,     KC_NO,   KEY_WMWL, KEY_WMWR,  KEY_WHWN, ____,      ____, KEY_WHLF, KEY_QUIT, KC_WH_U,  KC_NO,     ____,   KEY_WMM2, 
@@ -134,10 +140,6 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
 
 static bool keyboard_locked = false;
 static bool caps_enabled = false;
-static bool NAV_layer_on = false;
-static uint16_t NAV_pressed_timer = 0;
-static bool NAV_do_1st_tap = true;
-static bool NAV_layer_hold = false;
 static bool inbetween_key = false;
 
 #define REPEAT_TIMEOUT 400
@@ -158,6 +160,11 @@ static bool inbetween_key = false;
 #define SYM_REPEAT_KEY X_SPC
 #define SYM_HOLD_KEY X_RSFT
 KEY_REPEAT_DEFINES(SYM)
+
+#define NAV_REPEAT_KEY_D X_D
+#define NAV_REPEAT_KEY_H X_H
+#define NAV_HOLD_KEY X_RSFT
+KEY_REPEAT_DEFINES(NAV)
 
 #define NUM_REPEAT_KEY X_E
 #define NUM_HOLD_KEY X_RSFT
@@ -245,6 +252,7 @@ static bool shift_is_on = false;
     {                                                                                             \
       if (SHIFTR_layer_on)                                                                        \
       {                                                                                           \
+        SHIFTR_interrupted = true;                                                                \
         shift_is_on = true;                                                                       \
       }                                                                                           \
       prefix##_layer_on = true;                                                                   \
@@ -283,12 +291,9 @@ static bool shift_is_on = false;
             }                                                                                     \
             SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                             \
             inbetween_key = true;                                                                 \
-            SET_LAYER_INTERRUPTED(SHIFTL);                                                        \
-            SET_LAYER_INTERRUPTED(SHIFTR);                                                        \
             if (shift_is_on && !SHIFTR_layer_on)                                                  \
             {                                                                                     \
               SEND_STRING(SS_UP(prefix##_HOLD_KEY));                                              \
-              shift_is_on = false;                                                                \
             }                                                                                     \
           }                                                                                       \
           else                                                                                    \
@@ -296,21 +301,27 @@ static bool shift_is_on = false;
             if (prefix##_second_press &&                                                          \
                 timer_elapsed(prefix##_second_press_timer) < REPEAT_TIMEOUT)                      \
             {                                                                                     \
+              if (shift_is_on && !SHIFTR_layer_on)                                                \
+              {                                                                                   \
+                SEND_STRING(SS_DOWN(prefix##_HOLD_KEY));                                          \
+              }                                                                                   \
               SEND_STRING(SS_TAP(prefix##_REPEAT_KEY));                                           \
               inbetween_key = true;                                                               \
-              SET_LAYER_INTERRUPTED(SHIFTL);                                                      \
-              SET_LAYER_INTERRUPTED(SHIFTR);                                                      \
+              if (shift_is_on && !SHIFTR_layer_on)                                                \
+              {                                                                                   \
+                SEND_STRING(SS_UP(prefix##_HOLD_KEY));                                            \
+              }                                                                                   \
             }                                                                                     \
             prefix##_do_2nd_tap = false;                                                          \
             prefix##_repeat = false;                                                              \
           }                                                                                       \
+          shift_is_on = false;                                                                    \
           prefix##_layer_on = false;                                                              \
         }                                                                                         \
         else                                                                                      \
         {                                                                                         \
           prefix##_do_2nd_tap = false;                                                            \
           prefix##_repeat = false;                                                                \
-          shift_is_on = false;                                                                    \
         }                                                                                         \
       }                                                                                           \
       else                                                                                        \
@@ -321,7 +332,94 @@ static bool shift_is_on = false;
       }                                                                                           \
     }                                                                                             \
     return false;                                                                                 \
-  }                                   /*«*/
+  } /*«*/
+#define KEY_LAYER_REPEAT_WITH_KEY(prefix, key)                                                  \
+  if (record->event.pressed)                                                                    \
+  {                                                                                             \
+    if (SHIFTL_layer_on || SHIFTR_layer_on)                                                     \
+    {                                                                                           \
+      SHIFTR_interrupted = true;                                                                \
+      shift_is_on = true;                                                                       \
+    }                                                                                           \
+    prefix##_layer_on = true;                                                                   \
+    layer_on(prefix);                                                                           \
+    inbetween_key = false;                                                                      \
+    if (prefix##_do_2nd_tap)                                                                    \
+    {                                                                                           \
+      prefix##_second_press_timer = timer_read();                                               \
+      prefix##_second_press = true;                                                             \
+      if (timer_elapsed(prefix##_seq_start_timer) < REPEAT_TIMEOUT && !inbetween_key)           \
+      {                                                                                         \
+        prefix##_repeat = true;                                                                 \
+        prefix##_repeated = false;                                                              \
+      }                                                                                         \
+    }                                                                                           \
+    else                                                                                        \
+    {                                                                                           \
+      prefix##_interrupted = false;                                                             \
+      prefix##_do_2nd_tap = true;                                                               \
+      prefix##_second_press = false;                                                            \
+      prefix##_seq_start_timer = timer_read();                                                  \
+    }                                                                                           \
+  }                                                                                             \
+  else                                                                                          \
+  {                                                                                             \
+    if (!prefix##_repeated)                                                                     \
+    {                                                                                           \
+      layer_off(prefix);                                                                        \
+      if (!prefix##_interrupted)                                                                \
+      {                                                                                         \
+        if (!prefix##_second_press && timer_elapsed(prefix##_seq_start_timer) < REPEAT_TIMEOUT) \
+        {                                                                                       \
+          if (shift_is_on && (!SHIFTR_layer_on || !SHIFTL_layer_on))                            \
+          {                                                                                     \
+            register_code(KC_LSFT);                                                             \
+          }                                                                                     \
+          SEND_STRING(SS_TAP(key));                                                             \
+          inbetween_key = true;                                                                 \
+          if (shift_is_on && !SHIFTR_layer_on)                                                  \
+          {                                                                                     \
+            unregister_code(KC_LSFT);                                                           \
+          }                                                                                     \
+        }                                                                                       \
+        else                                                                                    \
+        {                                                                                       \
+          if (prefix##_second_press &&                                                          \
+              timer_elapsed(prefix##_second_press_timer) < REPEAT_TIMEOUT)                      \
+          {                                                                                     \
+            if (shift_is_on && !SHIFTR_layer_on)                                                \
+            {                                                                                   \
+              SEND_STRING(SS_DOWN(X_LSFT));                                                     \
+            }                                                                                   \
+            SEND_STRING(SS_TAP(key));                                                           \
+            inbetween_key = true;                                                               \
+            NAV_interrupted = true;                                                             \
+            if (shift_is_on && !SHIFTR_layer_on)                                                \
+            {                                                                                   \
+              SEND_STRING(SS_UP(X_LSFT));                                                       \
+            }                                                                                   \
+          }                                                                                     \
+          prefix##_do_2nd_tap = false;                                                          \
+          prefix##_repeat = false;                                                              \
+        }                                                                                       \
+        shift_is_on = false;                                                                    \
+        prefix##_layer_on = false;                                                              \
+      }                                                                                         \
+      else                                                                                      \
+      {                                                                                         \
+        prefix##_do_2nd_tap = false;                                                            \
+        prefix##_repeat = false;                                                                \
+      }                                                                                         \
+    }                                                                                           \
+    else                                                                                        \
+    {                                                                                           \
+      prefix##_repeat = false;                                                                  \
+      prefix##_repeated = false;                                                                \
+      prefix##_do_2nd_tap = false;                                                              \
+    }                                                                                           \
+  }                                                                                             \
+  return false;
+
 #define SET_LAYER_INTERRUPTED(prefix) /*»*/ \
   if (prefix##_layer_on || prefix##_repeat)  \
   {                                          \
@@ -363,53 +461,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
       KEY_MOD_REPEAT(SHIFTR);
       KEY_LAYER_REPEAT(SYM);
       KEY_LAYER_REPEAT(NUM);
-      KEY_MOD_REPEAT(SHIFTL);
 
-    case KEY_NAV:
-    { /*»*/
-      if (record->event.pressed)
-      {
-        if (timer_elapsed(NAV_pressed_timer) > 400 && !NAV_do_1st_tap)
-        {
-          NAV_do_1st_tap = true;
-        }
-        if (NAV_do_1st_tap)
-        {
-          NAV_pressed_timer = timer_read();
-        }
-        if (!NAV_layer_on)
-        {
-          layer_on(NAV);
-          NAV_layer_on = true;
-        }
-      }
-      else
-      {
-        if (NAV_do_1st_tap)
-        {
-          NAV_layer_on = false;
-          layer_off(NAV);
-          NAV_do_1st_tap = false;
-          NAV_layer_hold = false;
-        }
-        else
-        {
-          if (!NAV_layer_hold)
-          {
-            NAV_layer_hold = true;
-            NAV_do_1st_tap = false;
-          }
-          else
-          {
-            NAV_layer_on = false;
-            layer_off(NAV);
-            NAV_do_1st_tap = true;
-            NAV_layer_hold = false;
-          }
-        }
-      }
-      return false;
-    } /*«*/
+    case KEY_NAVL:
+      KEY_LAYER_REPEAT_WITH_KEY(NAV, X_D);
+    case KEY_NAVR:
+      KEY_LAYER_REPEAT_WITH_KEY(NAV, X_H);
+
+      KEY_MOD_REPEAT(SHIFTL);
 
     case KEY_CAPS:
     { /*»*/
@@ -459,6 +517,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
         inbetween_key = true;
         SET_LAYER_INTERRUPTED(SYM);
         SET_LAYER_INTERRUPTED(NUM);
+        SET_LAYER_INTERRUPTED(NAV);
         SET_LAYER_INTERRUPTED(SHIFTR);
         SET_LAYER_INTERRUPTED(SHIFTL);
       }
