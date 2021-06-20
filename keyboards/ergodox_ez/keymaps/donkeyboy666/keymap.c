@@ -73,12 +73,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox_pretty(/*»*/
 KC_ESC, ____,         ____,         ____,         ____,          ____,     KEY_WMLC,    ____,  ____,   ____,           ____,          ____,          KC_MUTE,       KC_VOLU,
 ____,   ____,         KC_K,         KC_C,         KC_P,          KEY_WMLR, ____,        ____,  KC_ENT, KC_M,           KC_L,          KC_Q,          ____,          KC_VOLD,
-____,   KC_Z,         KC_U,         KC_S,         KC_T,          KC_B,                         KC_F,   KC_N,           KC_R,          KC_I,          KC_ESC,        ____, 
+____,   ____,         KC_U,         KC_S,         KC_T,          KC_B,                         KC_F,   KC_N,           KC_R,          KC_I,          KC_ESC,        ____, 
 KC_ESC, LCTL_T(KC_A), LT(WMN,KC_W), LT(UTI,KC_G), KEY_NAVL,       KC_V,     ____,        ____,  KC_J,  KEY_NAVR,  LT(UTI,KC_X),  LT(WMN, KC_Y), RCTL_T(KC_O),  KC_ESC,
 ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),                                      RALT_T(KC_ENT), KC_RGUI, ____, KC_NO,         ____, 
                                                                         ____,  ____,    ____,  ____, 
                                                                                ____,    ____, 
-                                                          KEY_SHIFTL, KEY_NUM, ____,    ____,  KEY_SYM, KEY_SHIFTR
+                                                          KEY_NUM, KC_E, ____,    ____,  KEY_SYM, KEY_SHIFTR
   ),/*«*/ 
 
  [SYM] = LAYOUT_ergodox_pretty(/*»*/
@@ -95,7 +95,7 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
   [NUM] = LAYOUT_ergodox_pretty(/*»*/
     ____,     ____,     ____,    ____,     ____,     ____,     ____,      ____,     ____,     ____,     ____,     ____,     ____,     KEY_LOCK,
     ____,     ____,     KC_DLR,  KC_7,     KC_CIRC,  ____,     ____,      ____,     ____,     KC_AT,    KC_3,     KC_AMPR,    ____,     ____,   
-    ____,     KC_NO,    KC_6,    KC_9,     KC_4,     KC_TILDE,                      KC_PLUS,  KC_1,     KC_5,     KC_2,     KEY_000,  ____,   
+    ____,     KC_NO,    KC_6,    KC_9,     KC_4,     KC_Z,                          KC_PLUS,  KC_1,     KC_5,     KC_2,     KEY_000,  ____,   
     KC_TRNS,  KC_8,     KC_LPRN, KC_COMM,  KC_DOT,   KC_BSLS,  ____,       ____,    KC_TRNS,  KC_EQL,   KC_MINUS, KC_RPRN,  KC_0,     KC_TRNS,
     ____,     KC_TRNS,  ____,    KC_TRNS,  KC_TRNS,                                           KC_TRNS,  KC_TRNS,  ____,     KC_TRNS,  ____,
                                                       ____,    ____,       ____,    ____,   
@@ -118,7 +118,7 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
     ____,     ____,      ____,     ____,     ____,     ____,        ____,     ____,   ____,       ____,      ____,       ____,        ____,     ____,    
     ____,     ____,      KEY_WMSC, KC_NO,    KEY_WMSG, KC_NO,       ____,     ____,   KC_TRNS,    KC_NO,     KC_WH_U,    KC_NO,       KC_NO,    KC_TRNS,   
     ____,     KC_NO,     KEY_VFTG, KC_NO,    KC_NO,    KC_BTN3,                       KC_NO,      KC_NO,     KC_WH_D,    KC_NO,       KC_NO,    KC_NO,  
-    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KEY_PASTE_L, ____,     ____,   KEY_COPY_L, KC_NO,     KC_NO,      KC_NO,       KC_TRNS,  KC_TRNS,
+    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KEY_PASTE_L, ____,     ____,   KEY_COPY_L, KC_ENT,     KC_NO,      KC_NO,       KC_TRNS,  KC_TRNS,
     ____,     KEY_WMLD,  ____,     KC_TRNS,  KC_TRNS,                                             KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
                                                            ____,    ____,     ____, ____,
                                                                     ____,     ____,
@@ -129,11 +129,11 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
     ____,     ____,     ____,    ____,     ____,      ____,     ____,      ____, ____,     ____,     ____,     ____,      ____,   KEY_WMM1,   
     ____,     ____,     KC_NO,   KEY_WMWL, KEY_WMWR,  KEY_WHWN, ____,      ____, KEY_WHLF, KEY_QUIT, KC_WH_U,  KC_NO,     ____,   KEY_WMM2, 
     ____,     KEY_WFLT, KC_NO,   KEY_WSDL, KEY_WSDR,  KEY_WWHD,                  KC_NO,    KEY_WSDL, KC_WH_D,  KEY_WSDR,  KC_NO,  KEY_WMM3,  
-    KEY_WTLD, KEY_WMWV, KC_TRNS, KEY_WFUL, KEY_WNSS,  KEY_WNSW, ____,      ____, KC_NO,    KC_TAB,   KC_NO,    KC_TRNS,   KC_NO,  KC_NO,
+    KEY_WTLD, KEY_WMWV, KC_TRNS, KEY_WFUL, KEY_WNSS,  KEY_WNSW, ____,      ____, KC_NO,    KC_TAB,   KC_ENT,    KC_TRNS,   KC_NO,  KC_NO,
     ____,     KEY_WNRT, ____,    ____,     KEY_WSDV,                             ____,     ____,     ____,     KC_NO,     ____, 
                                                       ____,     ____,      ____, ____, 
                                                                 ____,      ____, 
-                                            KEY_WNEW, KEY_WMLW, ____,      ____,  KEY_WMLB, KEY_WMLT
+                                        KEY_WNEW, KEY_WMLW, KEY_QUIT,      ____,  KEY_WMLB, KEY_WMLT
   )/*«*/
 };
 /* clang-format on */
@@ -166,7 +166,7 @@ KEY_REPEAT_DEFINES(SYM)
 #define NAV_HOLD_KEY X_RSFT
 KEY_REPEAT_DEFINES(NAV)
 
-#define NUM_REPEAT_KEY X_E
+#define NUM_REPEAT_KEY X_ENT
 #define NUM_HOLD_KEY X_RSFT
 KEY_REPEAT_DEFINES(NUM)
 
@@ -332,8 +332,8 @@ static bool shift_is_on = false;
       }                                                                                           \
     }                                                                                             \
     return false;                                                                                 \
-  } /*«*/
-#define KEY_LAYER_REPEAT_WITH_KEY(prefix, key)                                                  \
+  }                                            /*«*/
+#define KEY_LAYER_REPEAT_WITH_KEY(prefix, key) /*»*/                                           \
   if (record->event.pressed)                                                                    \
   {                                                                                             \
     if (SHIFTL_layer_on || SHIFTR_layer_on)                                                     \
@@ -418,7 +418,7 @@ static bool shift_is_on = false;
       prefix##_do_2nd_tap = false;                                                              \
     }                                                                                           \
   }                                                                                             \
-  return false;
+  return false; /*«*/
 
 #define SET_LAYER_INTERRUPTED(prefix) /*»*/ \
   if (prefix##_layer_on || prefix##_repeat)  \
