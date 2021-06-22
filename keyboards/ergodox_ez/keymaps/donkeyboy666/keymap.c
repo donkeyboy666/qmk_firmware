@@ -74,11 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 KC_ESC, ____,         ____,         ____,         ____,          ____,     KEY_WMLC,    ____,  ____,   ____,           ____,          ____,          KC_MUTE,       KC_VOLU,
 ____,   ____,         KC_K,         KC_C,         KC_P,          KEY_WMLR, ____,        ____,  KC_ENT, KC_M,           KC_L,          KC_Q,          ____,          KC_VOLD,
 ____,   ____,         KC_U,         KC_S,         KC_T,          KC_B,                         KC_F,   KC_N,           KC_R,          KC_I,          KC_ESC,        ____, 
-KC_ESC, LCTL_T(KC_A), LT(WMN,KC_W), LT(UTI,KC_G), KEY_NAVL,       KC_V,     ____,        ____,  KC_J,  KEY_NAVR,  LT(UTI,KC_X),  LT(WMN, KC_Y), RCTL_T(KC_O),  KC_ESC,
-____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),                                      RALT_T(KC_ENT), KC_RGUI, ____, KC_NO,         ____, 
+KC_ESC, LCTL_T(KC_A), LT(WMN,KC_W), LT(UTI,KC_G), KEY_NAVL,      KC_V,     ____,        ____,  KC_J,   KEY_NAVR,       LT(UTI,KC_X),  LT(WMN, KC_Y), RCTL_T(KC_O),  KC_ESC,
+____,   KC_LSFT,      ____,         KC_LGUI,      LALT_T(KC_TAB),                                      RALT_T(KC_ENT), KC_RGUI, ____, KC_NO,         ____, 
                                                                         ____,  ____,    ____,  ____, 
                                                                                ____,    ____, 
-                                                          KEY_NUM, KC_E, ____,    ____,  KEY_SYM, KEY_SHIFTR
+                                                       KEY_NUM, KC_E, ____,    ____,    KEY_SYM, KEY_SHIFTR
   ),/*«*/ 
 
  [SYM] = LAYOUT_ergodox_pretty(/*»*/
@@ -107,7 +107,7 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
     ____,     ____,      ____,    ____,     ____,        ____,     ____,     ____,  ____,       ____,      ____,       ____,        ____,     ____,    
     ____,     ____,      KC_NO,   KC_UP,    KC_NO,       KC_NO,    ____,     ____,  KC_TRNS,    KC_NO,     KC_UP,      KC_NO,       KC_NO,    KC_TRNS,   
     ____,     KC_NO,     KC_LEFT, KC_DOWN,  KC_RIGHT,    KC_NO,                     KC_NO,      KC_LEFT,   KC_DOWN,    KC_RIGHT,    KC_NO,    KC_NO,  
-    KC_TRNS,  KC_TAB,    KC_HOME, KC_DEL,   KC_END,      KC_NO,    ____,     ____,  KC_NO,      KC_HOME,   KC_DEL,     KC_END,      KC_TRNS,  KC_TRNS,
+    KC_TRNS,  KC_TAB,    KC_HOME, KC_NO,   KC_END,       KC_NO,    ____,     ____,  KC_NO,      KC_HOME,   KC_NO,      KC_END,      KC_TRNS,  KC_TRNS,
     ____,     KC_TRNS,   ____,    KC_TRNS,  KC_TRNS,                                            KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
                                                           ____,    ____,     ____, ____,
                                                                    ____,     ____,
@@ -118,7 +118,7 @@ ____,   KC_NO,        ____,         KC_LGUI,      LALT_T(KC_TAB),               
     ____,     ____,      ____,     ____,     ____,     ____,        ____,     ____,   ____,       ____,      ____,       ____,        ____,     ____,    
     ____,     ____,      KEY_WMSC, KC_NO,    KEY_WMSG, KC_NO,       ____,     ____,   KC_TRNS,    KC_NO,     KC_WH_U,    KC_NO,       KC_NO,    KC_TRNS,   
     ____,     KC_NO,     KEY_VFTG, KC_NO,    KC_NO,    KC_BTN3,                       KC_NO,      KC_NO,     KC_WH_D,    KC_NO,       KC_NO,    KC_NO,  
-    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KEY_PASTE_L, ____,     ____,   KEY_COPY_L, KC_ENT,     KC_NO,      KC_NO,       KC_TRNS,  KC_TRNS,
+    KC_TRNS,  KEY_WMLX,  KEY_WEBB, KC_TRNS,  KEY_WEBF, KEY_PASTE_L, ____,     ____,   KEY_COPY_L, KC_ENT,    KC_NO,      KC_DEL,      KC_TRNS,  KC_TRNS,
     ____,     KEY_WMLD,  ____,     KC_TRNS,  KC_TRNS,                                             KC_TRNS,   KC_TRNS,    ____,        KC_TRNS,  ____,
                                                            ____,    ____,     ____, ____,
                                                                     ____,     ____,
@@ -656,4 +656,3 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t* record)
       return true;
   }
 } /*«*/
-
